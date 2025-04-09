@@ -2,7 +2,7 @@ from utility import (
     print_title, get_valid_date, get_valid_timeframe, get_valid_symbol, 
     generate_filename, split_date_range_monthly, generate_historical_url, normalize_timeframe
 )
-from request import get_symbol_exchange_token_map
+from request import get_symbol_exchange_token_map, fetch_and_save_symbol_token_data
 from config import KITE_USERNAME
 from login import ZerodhaLogin
 from data_fetch import ZerodhaDataFetcher
@@ -38,7 +38,10 @@ def main():
     """for r in ranges:
         print(r)"""
 
+    fetch_and_save_symbol_token_data()
     symbol_map = get_symbol_exchange_token_map()
+    print()
+    
     instrument_tok = symbol_map.get(symbol)
 
     print("Instrument token:", instrument_tok)
